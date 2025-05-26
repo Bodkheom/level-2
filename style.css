@@ -1,137 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-:root{
-  --accent-color: #8672FF;
-  --base-color: white;
-  --text-color: #2E2B41;
-  --input-color: #F3F0FF;
+:root {
+  --gradient: linear-gradient(
+    180deg,
+    rgba(45, 112, 1253, 0.73) 0%,
+    #163e92 100%
+  );
+  --dark: #001747;
+  --grey: #b1bacb;
+  --grey-border: rgba(210, 210, 210, 0.75);
+  --grey-light: #eeeeee;
+  --grey-dark: $405175;
+  --blue: #2d70fd;
+  --green: #00d8a7;
+  --white: #ffffff;
 }
-*{
+
+body {
+  background: var(--gradient);
   margin: 0;
-  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
-html{
-  font-family: Poppins, Segoe UI, sans-serif;
-  font-size: 12pt;
-  color: var(--text-color);
+
+.btn {
+  color: var(--white);
+  font-size: 1.1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.3rem;
+  background-color: var(--blue);
+  border: none;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* Todo Container */
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 2rem;
+  background: var(--white);
+  padding: 3rem;
+  height: 50%;
+  width: 60%;
+  box-shadow: 0 1rem 3rem 1rem rgba(0, 23, 71, 0.15);
+  max-width: 30rem;
+}
+
+h2 {
+  text-transform: uppercase;
+  height: 3rem;
+  color: var(--dark);
   text-align: center;
 }
-body{
-  min-height: 100vh;
-  background-image: url(background.jpg);
-  background-size: cover;
-  background-position: right;
-  overflow: hidden;
-}
-.wrapper{
-  box-sizing: border-box;
-  background-color: var(--base-color);
-  height: 100vh;
-  width: max(40%, 600px);
-  padding: 10px;
-  border-radius: 0 20px 20px 0;
+
+.input {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
-h1{
-  font-size: 3rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-form{
-  width: min(400px, 100%);
-  margin-top: 20px;
-  margin-bottom: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-form > div{
+
+.input-field {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  border: 0.06rem solid #d2d2d2bf;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  font-size: 1rem;
 }
-form label{
-  flex-shrink: 0;
-  height: 50px;
-  width: 50px;
-  background-color: var(--accent-color);
-  fill: var(--base-color);
-  color: var(--base-color);
-  border-radius: 10px 0 0 10px;
+
+input[type="text"]::placeholder {
+  color: var(--grey);
+}
+
+.todo-container {
   display: flex;
-  justify-content: center;
+  gap: 1rem;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.3rem;
+}
+
+#todoList p {
+  display: flex;
+  gap: 1rem;
+  color: var(--dark);
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: 500;
 }
-form input{
-  box-sizing: border-box;
-  flex-grow: 1;
-  min-width: 0;
-  height: 50px;
-  padding: 1em;
-  font: inherit;
-  border-radius: 0 10px 10px 0;
-  border: 2px solid var(--input-color);
-  border-left: none;
-  background-color: var(--input-color);
-  transition: 150ms ease;
+
+#todoList .disabled {
+  color: #8f98a8;
 }
-form input:hover{
-  border-color: var(--accent-color);
+
+.disabled {
+  display: flex;
+  text-decoration: line-through;
 }
-form input:focus{
-  outline: none;
-  border-color: var(--text-color);
-}
-div:has(input:focus) > label{
-  background-color: var(--text-color);
-}
-form input::placeholder{
-  color: var(--text-color);
-}
-form button{
-  margin-top: 10px;
-  border: none;
-  border-radius: 1000px;
-  padding: .85em 4em;
-  background-color: var(--accent-color);
-  color: var(--base-color);
-  font: inherit;
-  font-weight: 600;
-  text-transform: uppercase;
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   cursor: pointer;
-  transition: 150ms ease;
 }
-form button:hover{
-  background-color: var(--text-color);
+
+input[type="checkbox"]::before {
+  content: "\2713";
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.7rem;
+  text-align: center;
+  border: 0.06rem solid var(--grey-border);
+  border-radius: 50%;
+  color: transparent;
 }
-form button:focus{
-  outline: none;
-  background-color: var(--text-color);
+
+input[type="checkbox"]:checked::before {
+  color: var(--white);
+  background-color: var(--green);
+  border: 0.06rem solid var(--green);
+  border-radius: 50%;
 }
-a{
-  text-decoration: none;
-  color: var(--accent-color);
+
+.counter {
+  border: 0.06rem solid var(--grey-light);
 }
-a:hover{
-  text-decoration: underline;
+
+.counter-container {
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--grey);
 }
-@media(max-width: 1100px){
-  .wrapper{
-    width: min(600px, 100%);
-    border-radius: 0;
-  }
+
+.counter-container p {
+  align-self: center;
 }
-form div.incorrect label{
-  background-color: #f06272;
+
+.counter-container button {
+  border: none;
+  background-color: transparent;
+  color: var(--grey);
+  font-size: 1rem;
 }
-form div.incorrect input{
-  border-color: #f06272;
+
+.footer {
+  display: flex;
+  gap: 1.8rem;
+  background-color: var(--white);
+  padding: 1.2rem;
+  border-radius: 0.5rem;
 }
-#error-message{
-  color:#f06272;
+
+.made-by,
+.author {
+  font-size: 0.9rem;
+}
+
+.made-by {
+  color: var(--grey-dark);
+}
+
+.author {
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.scroll {
+  height: 15rem;
+  scrollbar-width: thin;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: 0.5rem;
+}
+
+.scroll::-webkit-scrollbar-track {
+  display: none;
 }
